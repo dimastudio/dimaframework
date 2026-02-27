@@ -1,0 +1,75 @@
+{
+  "name": "dima-framework",
+  "version": "2.0.0",
+  "description": "فریمورک مدرن و قدرتمند برای ساخت اپلیکیشن‌های وب با پشتیبانی کامل از RTL و زبان فارسی",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint src --ext .ts,.tsx",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "nextjs",
+    "ui",
+    "components",
+    "rtl",
+    "persian",
+    "farsi",
+    "tailwindcss",
+    "design-system",
+    "framework"
+  ],
+  "author": "Dima Framework Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dimaframework/dima-framework.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dimaframework/dima-framework/issues"
+  },
+  "homepage": "https://dimaframework.ir",
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.0",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.2.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ]
+}
