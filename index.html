@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پورتال سازمان ثبت احوال | خدمات الکترونیک</title>
+    <meta name="description" content="ارائه خدمات الکترونیک ثبت احوال به شهروندان">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.dimaframework.ir/dima.min.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        :root { 
+            --primary: #0d7377; 
+            --accent: #14a3a8; 
+            --secondary: #e8f4f4;
+        }
+        .dark { --primary: #14a3a8; --accent: #0d7377; }
+        .gradient-text { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        
+        .top-bar { background: var(--primary); color: white; padding: 0.5rem 1rem; font-size: 0.8125rem; }
+        .top-bar a { color: white; opacity: 0.9; }
+        .top-bar a:hover { opacity: 1; }
+        
+        .header { background: white; border-bottom: 3px solid var(--primary); position: sticky; top: 0; z-index: 50; }
+        .logo-area { display: flex; align-items: center; gap: 1rem; }
+        .logo-icon { width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; }
+        
+        .hero { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 4rem 1rem; }
+        .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .hero p { opacity: 0.9; max-width: 500px; margin-bottom: 2rem; }
+        
+        .service-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; text-align: center; transition: all 0.2s; background: white; }
+        .service-card:hover { border-color: var(--primary); box-shadow: 0 4px 20px rgba(13, 115, 119, 0.1); }
+        .service-icon { width: 56px; height: 56px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: var(--primary); }
+        
+        .news-item { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+        .news-date { background: var(--primary); color: white; padding: 0.5rem; border-radius: var(--radius); text-align: center; min-width: 60px; }
+        .news-date .day { font-size: 1.25rem; font-weight: 700; }
+        .news-date .month { font-size: 0.75rem; }
+        
+        .stat-card { background: var(--secondary); padding: 1.5rem; border-radius: var(--radius); text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: 700; color: var(--primary); }
+        
+        .footer { background: #1a3a3b; color: white; padding: 3rem 1rem; }
+        .footer a { color: rgba(255,255,255,0.7); }
+        .footer a:hover { color: white; }
+        
+        .nav-menu { display: flex; align-items: center; gap: 0.25rem; }
+        .nav-item { padding: 0.75rem 1rem; color: var(--foreground); font-size: 0.9375rem; transition: all 0.2s; border-bottom: 3px solid transparent; }
+        .nav-item:hover { color: var(--primary); border-bottom-color: var(--primary); background: var(--secondary); }
+        
+        @media (max-width: 768px) { 
+            .nav-menu { display: none; } 
+            .hero h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="#">پرتال دولت</a>
+                <a href="#">سامانه پیام‌رسان</a>
+                <a href="#">دسترسی پذیری</a>
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <span>۱۴۰۳/۱۲/۰۸</span>
+                <span>|</span>
+                <span>پنجشنبه</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between; height: 75px;">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <i data-lucide="landmark" style="width: 24px; height: 24px;"></i>
+                </div>
+                <div>
+                    <div style="font-weight: 700; font-size: 1.125rem;">سازمان ثبت احوال</div>
+                    <div style="font-size: 0.75rem; color: var(--muted-foreground);">کشور جمهوری اسلامی ایران</div>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="#services" class="nav-item">خدمات</a>
+                <a href="#news" class="nav-item">اخبار</a>
+                <a href="#laws" class="nav-item">قوانین</a>
+                <a href="#contact" class="nav-item">تماس</a>
+            </nav>
+            <div style="display: flex; gap: 0.5rem;">
+                <button class="btn btn-primary btn-sm">ورود / ثبت‌نام</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="grid grid-2" style="gap: 3rem; align-items: center;">
+                <div>
+                    <span style="background: rgba(255,255,255,0.2); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem;">سامانه خدمات الکترونیک</span>
+                    <h1>خدمات ثبت احوال<br>به صورت آنلاین</h1>
+                    <p>بدون مراجعه حضوری، خدمات ثبت احوال را به صورت آنلاین دریافت کنید.</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn" style="background: white; color: var(--primary);">شروع خدمات</button>
+                        <button class="btn btn-outline" style="border-color: white; color: white;">راهنمای استفاده</button>
+                    </div>
+                </div>
+                <div style="text-align: center; display: none;">
+                    <i data-lucide="file-text" style="width: 200px; height: 200px; opacity: 0.3;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Services -->
+    <section style="padding: 3rem 1rem; background: var(--muted);">
+        <div class="container">
+            <div class="grid grid-5" style="gap: 1rem; margin-bottom: 2rem;">
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="user-plus"></i></div>
+                    <h4 style="font-size: 0.875rem; margin: 0;">ثبت ولادت</h4>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="file-minus"></i></div>
+                    <h4 style="font-size: 0.875rem; margin: 0;">ثبت فوت</h4>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="heart"></i></div>
+                    <h4 style="font-size: 0.875rem; margin: 0;">ثبت ازدواج</h4>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="file-text"></i></div>
+                    <h4 style="font-size: 0.875rem; margin: 0;">شناسنامه</h4>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i data-lucide="map-pin"></i></div>
+                    <h4 style="font-size: 0.875rem; margin: 0;">تغییر آدرس</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="badge" style="background: var(--secondary); color: var(--primary);">خدمات الکترونیک</span>
+                <h2 style="font-size: 1.75rem; margin-top: 0.5rem;">خدمات قابل ارائه</h2>
+            </div>
+            
+            <div class="grid grid-3" style="gap: 1.5rem;">
+                <div class="card">
+                    <div class="card-content">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--secondary); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                <i data-lucide="id-card"></i>
+                            </div>
+                            <h4 style="margin: 0;">کارت ملی هوشمند</h4>
+                        </div>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1rem;">درخواست صدور، تمدید و جایگزینی کارت ملی هوشمند</p>
+                        <a href="#" class="btn btn-outline btn-sm">درخواست</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--secondary); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                <i data-lucide="book-open"></i>
+                            </div>
+                            <h4 style="margin: 0;">گواهی عدم سابقه</h4>
+                        </div>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1rem;">صدور گواهی عدم سابقه ازدواج یا فوت</p>
+                        <a href="#" class="btn btn-outline btn-sm">درخواست</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--secondary); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                <i data-lucide="copy"></i>
+                            </div>
+                            <h4 style="margin: 0;">رونوشت شناسنامه</h4>
+                        </div>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1rem;">درخواست رونوشت شناسنامه به صورت الکترونیک</p>
+                        <a href="#" class="btn btn-outline btn-sm">درخواست</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--secondary); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                <i data-lucide="edit"></i>
+                            </div>
+                            <h4 style="margin: 0;">اصلاح شناسنامه</h4>
+                        </div>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1rem;">درخواست اصلاح اطلاعات شناسنامه</p>
+                        <a href="#" class="btn btn-outline btn-sm">درخواست</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--secondary); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                <i data-lucide="users"></i>
+                            </div>
+                            <h4 style="margin: 0;">ثبت احوال خانواده</h4>
+                        </div>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1rem;">ثبت اطلاعات اعضای خانواده</p>
+                        <a href="#" class="btn btn-outline btn-sm">درخواست</a>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: var(--secondary); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                <i data-lucide="search"></i>
+                            </div>
+                            <h4 style="margin: 0;">استعلام وضعیت</h4>
+                        </div>
+                        <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1rem;">استعلام وضعیت درخواست‌های ثبت شده</p>
+                        <a href="#" class="btn btn-outline btn-sm">استعلام</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section style="padding: 3rem 1rem; background: var(--secondary);">
+        <div class="container">
+            <div class="grid grid-4" style="gap: 1.5rem;">
+                <div class="stat-card">
+                    <div class="stat-value">۸۵M+</div>
+                    <div style="color: var(--muted-foreground); font-size: 0.875rem;">شناسنامه صادر شده</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">۱۵M+</div>
+                    <div style="color: var(--muted-foreground); font-size: 0.875rem;">کارت ملی هوشمند</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">۵۰۰+</div>
+                    <div style="color: var(--muted-foreground); font-size: 0.875rem;">دفتر ثبت احوال</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">۲۴/۷</div>
+                    <div style="color: var(--muted-foreground); font-size: 0.875rem;">خدمات آنلاین</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News -->
+    <section id="news" class="section">
+        <div class="container">
+            <div class="grid grid-2" style="gap: 3rem;">
+                <div>
+                    <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i data-lucide="newspaper" style="color: var(--primary);"></i>
+                        اخبار و اطلاعیه‌ها
+                    </h3>
+                    <div class="news-item">
+                        <div class="news-date">
+                            <div class="day">۱۵</div>
+                            <div class="month">اسفند</div>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.9375rem; margin-bottom: 0.25rem;">آغاز ثبت نام کارت ملی هوشمند نوبت دوم</h4>
+                            <p style="color: var(--muted-foreground); font-size: 0.8125rem; margin: 0;">ثبت نام آنلاین کارت ملی هوشمند برای متقاضیان آغاز شده است.</p>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">
+                            <div class="day">۱۰</div>
+                            <div class="month">اسفند</div>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.9375rem; margin-bottom: 0.25rem;">تغییر ساعت کاری دفاتر در ایام نوروز</h4>
+                            <p style="color: var(--muted-foreground); font-size: 0.8125rem; margin: 0;">اطلاعیه تغییر ساعت کاری دفاتر ثبت احوال در تعطیلات نوروز</p>
+                        </div>
+                    </div>
+                    <div class="news-item" style="border-bottom: none;">
+                        <div class="news-date">
+                            <div class="day">۰۵</div>
+                            <div class="month">اسفند</div>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.9375rem; margin-bottom: 0.25rem;">راه‌اندازی سامانه جدید ثبت آنلاین</h4>
+                            <p style="color: var(--muted-foreground); font-size: 0.8125rem; margin: 0;">سامانه جدید با امکانات بهبود یافته راه‌اندازی شد.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i data-lucide="phone" style="color: var(--primary);"></i>
+                        تماس با ما
+                    </h3>
+                    <div class="card">
+                        <div class="card-content">
+                            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                    <i data-lucide="phone" style="color: var(--primary);"></i>
+                                    <div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-foreground);">تلفن تماس</div>
+                                        <div style="font-weight: 600;">۰۲۱-۱۲۳۴۵۶۷۸</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                    <i data-lucide="mail" style="color: var(--primary);"></i>
+                                    <div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-foreground);">ایمیل</div>
+                                        <div style="font-weight: 600;">info@sabteahval.ir</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                    <i data-lucide="map-pin" style="color: var(--primary);"></i>
+                                    <div>
+                                        <div style="font-size: 0.75rem; color: var(--muted-foreground);">آدرس</div>
+                                        <div style="font-weight: 600;">تهران، خیابان ولیعصر</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info" style="margin-top: 1.5rem;">
+                        <i data-lucide="info" class="alert-icon"></i>
+                        <div class="alert-content">
+                            <div class="alert-title">راهنمای خدمات</div>
+                            برای استفاده از خدمات، ابتدا در سامانه ثبت‌نام کنید.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid grid-4" style="margin-bottom: 2rem;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                        <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i data-lucide="landmark" style="width: 20px; height: 20px;"></i>
+                        </div>
+                        <span style="font-weight: 600;">سازمان ثبت احوال</span>
+                    </div>
+                    <p style="font-size: 0.8125rem; color: rgba(255,255,255,0.6);">وارد کردن خدمات الکترونیک به منازل شهروندان</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.875rem; margin-bottom: 1rem;">خدمات</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="font-size: 0.8125rem;">ثبت ولادت</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="font-size: 0.8125rem;">ثبت ازدواج</a></li>
+                        <li><a href="#" style="font-size: 0.8125rem;">کارت ملی</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.875rem; margin-bottom: 1rem;">قوانین</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="font-size: 0.8125rem;">قانون ثبت احوال</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="font-size: 0.8125rem;">آیین‌نامه‌ها</a></li>
+                        <li><a href="#" style="font-size: 0.8125rem;">دستورالعمل‌ها</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.875rem; margin-bottom: 1rem;">دسترسی</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="font-size: 0.8125rem;">نقشه سایت</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="font-size: 0.8125rem;">دسترسی پذیری</a></li>
+                        <li><a href="#" style="font-size: 0.8125rem;">حریم خصوصی</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <p style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin: 0;">© ۱۴۰۳ سازمان ثبت احوال کشور. تمامی حقوق محفوظ است.</p>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="#" class="icon-btn" style="color: white;"><i data-lucide="instagram" style="width: 18px; height: 18px;"></i></a>
+                    <a href="#" class="icon-btn" style="color: white;"><i data-lucide="twitter" style="width: 18px; height: 18px;"></i></a>
+                    <a href="#" class="icon-btn" style="color: white;"><i data-lucide="youtube" style="width: 18px; height: 18px;"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

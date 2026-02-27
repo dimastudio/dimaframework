@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دایما فریمورک - مستندات کامل</title>
+    <meta name="description" content="فریمورک مدرن و قدرتمند برای ساخت اپلیکیشن‌های وب با پشتیبانی کامل از RTL و زبان فارسی">
+    
+    <!-- Vazirmatn Font -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    
+    <!-- Fira Code Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    
+    <!-- Dima Framework CSS -->
+    <link rel="stylesheet" href="https://cdn.dimaframework.ir/dima.min.css">
+    
+    <style>
+        /* Custom styles not in Dima Framework */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), transparent, rgba(139, 92, 246, 0.1));
+            pointer-events: none;
+        }
+        
+        .hero-blob-1, .hero-blob-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+        
+        .hero-blob-1 {
+            top: 0;
+            right: 0;
+            background: rgba(124, 58, 237, 0.2);
+            transform: translate(30%, -30%);
+        }
+        
+        .hero-blob-2 {
+            bottom: 0;
+            left: 0;
+            background: rgba(139, 92, 246, 0.2);
+            transform: translate(-30%, 30%);
+        }
+        
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            background: var(--secondary);
+            color: var(--secondary-foreground);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .hero-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+        
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            transition: background-color 0.3s;
+        }
+        
+        .dark .header {
+            background-color: rgba(15, 15, 26, 0.95);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            gap: 1rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .search-box {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+        
+        .search-box .search-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted-foreground);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 288px;
+            flex-shrink: 0;
+            position: fixed;
+            top: 64px;
+            right: 0;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+            background: var(--background);
+            border-left: 1px solid var(--border);
+            padding: 1rem;
+            z-index: 40;
+            transition: transform 0.3s;
+        }
+        
+        .sidebar-section-title {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--muted-foreground);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 1rem;
+            border-radius: var(--radius);
+            color: var(--foreground);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        
+        .sidebar-link:hover {
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--primary);
+        }
+        
+        .sidebar-link.active {
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .sidebar-link svg {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .sidebar-separator {
+            height: 1px;
+            background: var(--border);
+            margin: 1rem 0;
+        }
+        
+        .main-content {
+            flex: 1;
+            margin-right: 288px;
+            min-height: calc(100vh - 64px);
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        .section {
+            padding: 5rem 1rem;
+            scroll-margin-top: 80px;
+            overflow-x: hidden;
+        }
+        
+        .section-alt {
+            background: var(--muted);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: var(--secondary);
+            color: var(--secondary-foreground);
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+        }
+        
+        .section-title {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-description {
+            color: var(--muted-foreground);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Code Block */
+        .code-block {
+            background: #1e1e2e;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            max-width: 100%;
+        }
+        
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .code-filename {
+            font-size: 0.8125rem;
+            color: #9ca3af;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .code-copy {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            background: transparent;
+            border: none;
+            color: #9ca3af;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        
+        .code-copy:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        .code-content {
+            padding: 1rem;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+            max-width: 100%;
+        }
+        
+        .code-content pre {
+            margin: 0;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: #cdd6f4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .inline-code {
+            display: inline;
+            padding: 0.125rem 0.375rem;
+            background: var(--muted);
+            border-radius: 0.25rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.875em;
+            color: var(--primary);
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--foreground);
+            transition: background-color 0.2s;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: var(--muted);
+        }
+        
+        /* Mobile Overlay */
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 35;
+        }
+        
+        .mobile-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Install Steps */
+        .install-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .install-step {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .install-step-number {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--primary-foreground);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        
+        .install-step-content {
+            flex: 1;
+            min-width: 0;
+            overflow-x: hidden;
+        }
+        
+        .install-step-content h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .install-step-content p {
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+        
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .color-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius);
+        }
+        
+        /* Feature Card */
+        .feature-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+        
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 1rem;
+            background: var(--card);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        /* Dropdown RTL Fix */
+        .dropdown-menu {
+            right: 0;
+            left: auto;
+        }
+        
+        /* Responsive */
+        @media (min-width: 1025px) {
+            .mobile-menu-btn {
+                display: none !important;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(100%);
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-right: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: flex !important;
+            }
+            
+            .search-box {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .section {
+                padding: 3rem 0.75rem;
+            }
+            
+            .code-content pre {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="mobile-menu-btn" onclick="toggleSidebar(event)">
+                    <i data-lucide="menu"></i>
+                </button>
+                <a href="javascript:void(0)" class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="sparkles" style="width: 20px; height: 20px;"></i>
+                    </div>
+                    <span class="gradient-text">دایما فریمورک</span>
+                </a>
+            </div>
+            
+            <div class="search-box">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="search" class="input" placeholder="جستجو در مستندات..." style="padding-right: 2.5rem;">
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button class="icon-btn" onclick="toggleTheme()" id="themeToggle">
+                    <i data-lucide="moon"></i>
+                </button>
+                <a href="https://github.com" target="_blank" class="icon-btn">
+                    <i data-lucide="github"></i>
+                </a>
+                <div class="dropdown" id="moreDropdown">
+                    <button class="icon-btn" onclick="toggleDropdown('moreDropdown', event)">
+                        <i data-lucide="more-horizontal"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="javascript:void(0)" class="dropdown-item">
+                            <i data-lucide="twitter" style="width: 16px; height: 16px;"></i>
+                            توییتر
+                        </a>
+                        <a href="javascript:void(0)" class="dropdown-item">
+                            <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                            دیسکورد
+                        </a>
+                        <div class="dropdown-separator"></div>
+                        <a href="javascript:void(0)" class="dropdown-item">
+                            <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                            ایمیل پشتیبانی
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar(event)"></div>
+
+    <!-- Main Layout -->
+    <div style="display: flex; overflow-x: hidden;">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <nav>
+                <a href="javascript:void(0)" class="sidebar-link active" onclick="scrollToSection('hero', this, event)">
+                    <i data-lucide="home"></i>
+                    خانه
+                </a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('features', this, event)">
+                    <i data-lucide="zap"></i>
+                    ویژگی‌ها
+                </a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('installation', this, event)">
+                    <i data-lucide="download"></i>
+                    نصب
+                </a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('colors', this, event)">
+                    <i data-lucide="palette"></i>
+                    رنگ‌ها
+                </a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('typography', this, event)">
+                    <i data-lucide="type"></i>
+                    تایپوگرافی
+                </a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('grid', this, event)">
+                    <i data-lucide="grid-3x3"></i>
+                    گرید
+                </a>
+                
+                <div class="sidebar-separator"></div>
+                <div class="sidebar-section-title">کامپوننت‌ها</div>
+                
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('buttons', this, event)">دکمه‌ها</a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('cards', this, event)">کارت‌ها</a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('badges', this, event)">نشان‌ها</a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('alerts', this, event)">هشدارها</a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('forms', this, event)">فرم‌ها</a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('modals', this, event)">مودال‌ها</a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('tabs', this, event)">تب‌ها</a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('progress', this, event)">پیشرفت</a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('avatars', this, event)">آواتارها</a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('tooltips', this, event)">تولتیپ‌ها</a>
+                
+                <div class="sidebar-separator"></div>
+                
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('examples', this, event)">
+                    <i data-lucide="package"></i>
+                    نمونه‌ها
+                </a>
+                <a href="javascript:void(0)" class="sidebar-link" onclick="scrollToSection('faq', this, event)">
+                    <i data-lucide="help-circle"></i>
+                    سوالات متداول
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section id="hero" class="hero">
+                <div class="hero-blob-1"></div>
+                <div class="hero-blob-2"></div>
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i>
+                        نسخه ۲.۰ منتشر شد
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="gradient-text">دایما فریمورک</span>
+                    </h1>
+                    <p class="hero-description">
+                        فریمورک مدرن و قدرتمند CSS با پشتیبانی کامل از RTL و زبان فارسی
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#installation" class="btn btn-primary btn-lg">
+                            شروع کنید
+                            <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="btn btn-outline btn-lg">
+                            <i data-lucide="github" style="width: 18px; height: 18px;"></i>
+                            گیت‌هاب
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div style="text-align: center;">
+                            <div class="hero-stat-value gradient-text">۵۰+</div>
+                            <div class="hero-stat-label">کامپوننت</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="hero-stat-value gradient-text">۱۳KB</div>
+                            <div class="hero-stat-label">حجم فایل</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="hero-stat-value gradient-text">۱۰۰%</div>
+                            <div class="hero-stat-label">RTL</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div class="hero-stat-value gradient-text">CDN</div>
+                            <div class="hero-stat-label">آماده استفاده</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">ویژگی‌ها</span>
+                        <h2 class="section-title">چرا دایما فریمورک؟</h2>
+                        <p class="section-description">
+                            مجموعه کاملی از کامپوننت‌ها برای ساخت اپلیکیشن‌های مدرن
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-3">
+                        <div class="card feature-card">
+                            <div class="card-content">
+                                <div class="feature-icon" style="background: rgba(124, 58, 237, 0.1);">
+                                    <i data-lucide="palette" style="color: var(--primary);"></i>
+                                </div>
+                                <h4 style="margin-bottom: 0.5rem;">طراحی مدرن</h4>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">
+                                    کامپوننت‌های زیبا با پشتیبانی از تم روشن و تاریک
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card feature-card">
+                            <div class="card-content">
+                                <div class="feature-icon" style="background: rgba(59, 130, 246, 0.1);">
+                                    <i data-lucide="globe" style="color: #3b82f6;"></i>
+                                </div>
+                                <h4 style="margin-bottom: 0.5rem;">پشتیبانی کامل RTL</h4>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">
+                                    طراحی شده برای زبان‌های راست به چپ
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card feature-card">
+                            <div class="card-content">
+                                <div class="feature-icon" style="background: rgba(34, 197, 94, 0.1);">
+                                    <i data-lucide="zap" style="color: #22c55e;"></i>
+                                </div>
+                                <h4 style="margin-bottom: 0.5rem;">سبک و سریع</h4>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">
+                                    فقط ۱۳ کیلوبایت، بدون وابستگی
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card feature-card">
+                            <div class="card-content">
+                                <div class="feature-icon" style="background: rgba(245, 158, 11, 0.1);">
+                                    <i data-lucide="cloud" style="color: #f59e0b;"></i>
+                                </div>
+                                <h4 style="margin-bottom: 0.5rem;">CDN آماده</h4>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">
+                                    بدون نیاز به نصب، فقط یک لینک
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card feature-card">
+                            <div class="card-content">
+                                <div class="feature-icon" style="background: rgba(239, 68, 68, 0.1);">
+                                    <i data-lucide="settings" style="color: #ef4444;"></i>
+                                </div>
+                                <h4 style="margin-bottom: 0.5rem;">قابل سفارشی‌سازی</h4>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">
+                                    با CSS Variables به راحتی تغییر دهید
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card feature-card">
+                            <div class="card-content">
+                                <div class="feature-icon" style="background: rgba(6, 182, 212, 0.1);">
+                                    <i data-lucide="moon" style="color: #06b6d4;"></i>
+                                </div>
+                                <h4 style="margin-bottom: 0.5rem;">Dark Mode</h4>
+                                <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">
+                                    پشتیبانی داخلی از حالت تاریک
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Installation Section -->
+            <section id="installation" class="section section-alt">
+                <div class="container" style="max-width: 900px;">
+                    <div class="section-header">
+                        <span class="section-badge">نصب و راه‌اندازی</span>
+                        <h2 class="section-title">شروع کار با دایما</h2>
+                        <p class="section-description">
+                            در کمتر از یک دقیقه دایما فریمورک را به پروژه خود اضافه کنید
+                        </p>
+                    </div>
+                    
+                    <div class="install-steps">
+                        <div class="install-step">
+                            <div class="install-step-number">۱</div>
+                            <div class="install-step-content">
+                                <h4>افزودن فونت وزیرمتن</h4>
+                                <p>ابتدا فونت فارسی وزیرمتن را اضافه کنید:</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-filename">HTML Head</span>
+                                        <button class="code-copy" onclick="copyCode(this)">
+                                            <i data-lucide="copy" style="width: 14px; height: 14px;"></i>
+                                            کپی
+                                        </button>
+                                    </div>
+                                    <div class="code-content">
+<pre>&lt;link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"&gt;</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="install-step">
+                            <div class="install-step-number">۲</div>
+                            <div class="install-step-content">
+                                <h4>افزودن فایل CSS دایما</h4>
+                                <p>فایل CSS دایما را از CDN اضافه کنید:</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-filename">HTML Head</span>
+                                        <button class="code-copy" onclick="copyCode(this)">
+                                            <i data-lucide="copy" style="width: 14px; height: 14px;"></i>
+                                            کپی
+                                        </button>
+                                    </div>
+                                    <div class="code-content">
+<pre>&lt;link rel="stylesheet" href="https://cdn.dimaframework.ir/dima.min.css"&gt;</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="install-step">
+                            <div class="install-step-number">۳</div>
+                            <div class="install-step-content">
+                                <h4>تنظیم HTML</h4>
+                                <p>خصوصیت‌های RTL و زبان فارسی را تنظیم کنید:</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-filename">HTML</span>
+                                        <button class="code-copy" onclick="copyCode(this)">
+                                            <i data-lucide="copy" style="width: 14px; height: 14px;"></i>
+                                            کپی
+                                        </button>
+                                    </div>
+                                    <div class="code-content">
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="fa" dir="rtl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;!-- فونت وزیرمتن --&gt;
+    &lt;link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"&gt;
+    &lt;!-- دایما فریمورک --&gt;
+    &lt;link rel="stylesheet" href="https://cdn.dimaframework.ir/dima.min.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- محتوای شما --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="install-step">
+                            <div class="install-step-number">۴</div>
+                            <div class="install-step-content">
+                                <h4>شروع استفاده</h4>
+                                <p>اکنون می‌توانید از کلاس‌های دایما استفاده کنید:</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span class="code-filename">HTML</span>
+                                        <button class="code-copy" onclick="copyCode(this)">
+                                            <i data-lucide="copy" style="width: 14px; height: 14px;"></i>
+                                            کپی
+                                        </button>
+                                    </div>
+                                    <div class="code-content">
+<pre>&lt;button class="btn btn-primary"&gt;دکمه اصلی&lt;/button&gt;
+
+&lt;div class="card"&gt;
+    &lt;div class="card-header"&gt;
+        &lt;h4 class="card-title"&gt;عنوان کارت&lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div class="card-content"&gt;
+        &lt;input type="text" class="input" placeholder="ورودی"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-2" style="margin-top: 2rem;">
+                        <div class="alert alert-tip">
+                            <i data-lucide="moon" class="alert-icon"></i>
+                            <div class="alert-content">
+                                <div class="alert-title">حالت تاریک</div>
+                                برای فعال‌سازی Dark Mode، کلاس dark را به html اضافه کنید:
+                                <div class="code-block" style="margin-top: 0.5rem; margin-bottom: 0;">
+                                    <div class="code-content" style="padding: 0.5rem;">
+                                        <pre>&lt;html lang="fa" dir="rtl" class="dark"&gt;</pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert alert-info">
+                            <i data-lucide="download" class="alert-icon"></i>
+                            <div class="alert-content">
+                                <div class="alert-title">دانلود فایل</div>
+                                می‌توانید فایل CSS را مستقیماً دانلود کنید:
+                                <a href="https://cdn.dimaframework.ir/dima.min.css" class="btn btn-sm btn-outline" style="margin-top: 0.5rem;">
+                                    دانلود dima.min.css
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Colors Section -->
+            <section id="colors" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">سیستم رنگ‌بندی</span>
+                        <h2 class="section-title">پالت رنگ‌های دایما</h2>
+                        <p class="section-description">
+                            سیستم رنگ‌بندی منعطف با CSS Variables
+                        </p>
+                    </div>
+                    
+                    <div class="card" style="margin-bottom: 2rem;">
+                        <div class="card-header">
+                            <h4 style="margin: 0;">متغیرهای CSS</h4>
+                            <p class="card-description" style="margin: 0;">تمام رنگ‌ها قابل سفارشی‌سازی هستند</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="color-grid">
+                                <div class="color-item">
+                                    <div class="color-swatch" style="background: var(--primary);"></div>
+                                    <div>
+                                        <div style="font-weight: 500; font-size: 0.875rem;">رنگ اصلی</div>
+                                        <span class="inline-code">--primary</span>
+                                    </div>
+                                </div>
+                                <div class="color-item">
+                                    <div class="color-swatch" style="background: var(--secondary);"></div>
+                                    <div>
+                                        <div style="font-weight: 500; font-size: 0.875rem;">رنگ ثانویه</div>
+                                        <span class="inline-code">--secondary</span>
+                                    </div>
+                                </div>
+                                <div class="color-item">
+                                    <div class="color-swatch" style="background: var(--accent);"></div>
+                                    <div>
+                                        <div style="font-weight: 500; font-size: 0.875rem;">رنگ تأکید</div>
+                                        <span class="inline-code">--accent</span>
+                                    </div>
+                                </div>
+                                <div class="color-item">
+                                    <div class="color-swatch" style="background: var(--success);"></div>
+                                    <div>
+                                        <div style="font-weight: 500; font-size: 0.875rem;">موفقیت</div>
+                                        <span class="inline-code">--success</span>
+                                    </div>
+                                </div>
+                                <div class="color-item">
+                                    <div class="color-swatch" style="background: var(--warning);"></div>
+                                    <div>
+                                        <div style="font-weight: 500; font-size: 0.875rem;">هشدار</div>
+                                        <span class="inline-code">--warning</span>
+                                    </div>
+                                </div>
+                                <div class="color-item">
+                                    <div class="color-swatch" style="background: var(--destructive);"></div>
+                                    <div>
+                                        <div style="font-weight: 500; font-size: 0.875rem;">خطا</div>
+                                        <span class="inline-code">--destructive</span>
+                                    </div>
+                                </div>
+                                <div class="color-item">
+                                    <div class="color-swatch" style="background: var(--info);"></div>
+                                    <div>
+                                        <div style="font-weight: 500; font-size: 0.875rem;">اطلاعات</div>
+                                        <span class="inline-code">--info</span>
+                                    </div>
+                                </div>
+                                <div class="color-item">
+                                    <div class="color-swatch" style="background: var(--muted); border: 1px solid var(--border);"></div>
+                                    <div>
+                                        <div style="font-weight: 500; font-size: 0.875rem;">خاموش</div>
+                                        <span class="inline-code">--muted</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Buttons Section -->
+            <section id="buttons" class="section section-alt">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">دکمه‌ها</span>
+                        <h2 class="section-title">کامپوننت دکمه</h2>
+                        <p class="section-description">
+                            دکمه‌های متنوع با استایل‌های مختلف
+                        </p>
+                    </div>
+                    
+                    <div class="card" style="margin-bottom: 1.5rem;">
+                        <div class="card-header">
+                            <h4 style="margin: 0;">انواع دکمه</h4>
+                        </div>
+                        <div class="card-content" style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                            <button class="btn btn-primary">دکمه اصلی</button>
+                            <button class="btn btn-secondary">دکمه ثانویه</button>
+                            <button class="btn btn-outline">دکمه حاشیه‌دار</button>
+                            <button class="btn btn-ghost">دکمه شفاف</button>
+                            <button class="btn btn-destructive">دکمه خطر</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-bottom: 1.5rem;">
+                        <div class="card-header">
+                            <h4 style="margin: 0;">سایزهای مختلف</h4>
+                        </div>
+                        <div class="card-content" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;">
+                            <button class="btn btn-primary btn-sm">کوچک</button>
+                            <button class="btn btn-primary">معمولی</button>
+                            <button class="btn btn-primary btn-lg">بزرگ</button>
+                            <button class="btn btn-primary btn-icon">
+                                <i data-lucide="heart" style="width: 18px; height: 18px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 style="margin: 0;">دکمه با آیکون</h4>
+                        </div>
+                        <div class="card-content" style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                            <button class="btn btn-primary">
+                                <i data-lucide="download" style="width: 16px; height: 16px;"></i>
+                                دانلود
+                            </button>
+                            <button class="btn btn-outline">
+                                ادامه
+                                <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cards Section -->
+            <section id="cards" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">کارت‌ها</span>
+                        <h2 class="section-title">کامپوننت کارت</h2>
+                        <p class="section-description">
+                            کارت‌های زیبا برای نمایش محتوا
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 style="margin: 0;">کارت ساده</h4>
+                                <p class="card-description" style="margin: 0;">توضیحات کارت در اینجا</p>
+                            </div>
+                            <div class="card-content">
+                                <p style="margin: 0; color: var(--muted-foreground); font-size: 0.875rem;">
+                                    محتوای کارت در اینجا قرار می‌گیرد.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-content">
+                                <h4 style="margin-bottom: 0.5rem;">کارت بدون هدر</h4>
+                                <p style="margin: 0; color: var(--muted-foreground); font-size: 0.875rem;">
+                                    این کارت هدر جداگانه ندارد.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 style="margin: 0;">کارت با فوتر</h4>
+                            </div>
+                            <div class="card-content">
+                                <p style="margin: 0; color: var(--muted-foreground); font-size: 0.875rem;">
+                                    محتوای کارت
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary btn-sm">تایید</button>
+                                <button class="btn btn-outline btn-sm">انصراف</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Badges Section -->
+            <section id="badges" class="section section-alt">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">نشان‌ها</span>
+                        <h2 class="section-title">کامپوننت نشان</h2>
+                        <p class="section-description">
+                            نشان‌های کوچک برای برچسب‌گذاری
+                        </p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 style="margin: 0;">انواع نشان</h4>
+                        </div>
+                        <div class="card-content" style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                            <span class="badge badge-default">پیش‌فرض</span>
+                            <span class="badge badge-secondary">ثانویه</span>
+                            <span class="badge badge-outline">حاشیه‌دار</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Alerts Section -->
+            <section id="alerts" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">هشدارها</span>
+                        <h2 class="section-title">کامپوننت هشدار</h2>
+                        <p class="section-description">
+                            پیام‌های اطلاع‌رسانی و هشدار
+                        </p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="alert alert-info">
+                                <i data-lucide="info" class="alert-icon"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">اطلاعات</div>
+                                    این یک پیام اطلاع‌رسانی است.
+                                </div>
+                            </div>
+                            <div class="alert alert-success">
+                                <i data-lucide="check-circle" class="alert-icon"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">موفقیت</div>
+                                    عملیات با موفقیت انجام شد.
+                                </div>
+                            </div>
+                            <div class="alert alert-warning">
+                                <i data-lucide="alert-triangle" class="alert-icon"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">هشدار</div>
+                                    لطفاً اطلاعات را بررسی کنید.
+                                </div>
+                            </div>
+                            <div class="alert alert-danger" style="margin-bottom: 0;">
+                                <i data-lucide="x-circle" class="alert-icon"></i>
+                                <div class="alert-content">
+                                    <div class="alert-title">خطا</div>
+                                    خطایی رخ داده است.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Forms Section -->
+            <section id="forms" class="section section-alt">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">فرم‌ها</span>
+                        <h2 class="section-title">کامپوننت‌های فرم</h2>
+                        <p class="section-description">
+                            ورودی‌ها و کنترل‌های فرم
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 style="margin: 0;">ورودی متن</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="input-group">
+                                    <label class="input-label">نام کاربری</label>
+                                    <input type="text" class="input" placeholder="نام خود را وارد کنید">
+                                </div>
+                                <div class="input-group">
+                                    <label class="input-label">ایمیل</label>
+                                    <input type="email" class="input" placeholder="example@email.com">
+                                </div>
+                                <div class="input-group" style="margin-bottom: 0;">
+                                    <label class="input-label">پیام</label>
+                                    <textarea class="textarea" placeholder="پیام خود را بنویسید..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 style="margin: 0;">سایر کنترل‌ها</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="checkbox-group" style="margin-bottom: 1rem;">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" checked>
+                                        گزینه اول
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox">
+                                        گزینه دوم
+                                    </label>
+                                </div>
+                                
+                                <div class="switch-wrapper" style="margin-bottom: 1rem;">
+                                    <span style="font-size: 0.875rem;">اعلان‌ها</span>
+                                    <div class="switch active" onclick="this.classList.toggle('active')"></div>
+                                </div>
+                                
+                                <div class="input-group" style="margin-bottom: 0;">
+                                    <label class="input-label">اسلایدر</label>
+                                    <input type="range" class="slider">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modals Section -->
+            <section id="modals" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">مودال‌ها</span>
+                        <h2 class="section-title">کامپوننت مودال</h2>
+                        <p class="section-description">
+                            پنجره‌های محاوره‌ای
+                        </p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 style="margin: 0;">نمونه مودال</h4>
+                        </div>
+                        <div class="card-content" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary" onclick="openModal('basicModal')">مودال ساده</button>
+                            <button class="btn btn-outline" onclick="openModal('confirmModal')">مودال تایید</button>
+                            <button class="btn btn-secondary" onclick="openModal('formModal')">مودال فرم</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabs Section -->
+            <section id="tabs" class="section section-alt">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">تب‌ها</span>
+                        <h2 class="section-title">کامپوننت تب</h2>
+                        <p class="section-description">
+                            تب‌های قابل انتخاب
+                        </p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="tabs">
+                                <div class="tabs-list">
+                                    <button class="tab-trigger active" onclick="switchTab(this, 'tab1')">تب اول</button>
+                                    <button class="tab-trigger" onclick="switchTab(this, 'tab2')">تب دوم</button>
+                                    <button class="tab-trigger" onclick="switchTab(this, 'tab3')">تب سوم</button>
+                                </div>
+                                <div id="tab1" class="tab-content active">
+                                    <p style="margin: 0; color: var(--muted-foreground);">محتوای تب اول در اینجا قرار می‌گیرد.</p>
+                                </div>
+                                <div id="tab2" class="tab-content">
+                                    <p style="margin: 0; color: var(--muted-foreground);">محتوای تب دوم در اینجا قرار می‌گیرد.</p>
+                                </div>
+                                <div id="tab3" class="tab-content">
+                                    <p style="margin: 0; color: var(--muted-foreground);">محتوای تب سوم در اینجا قرار می‌گیرد.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section id="progress" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">پیشرفت</span>
+                        <h2 class="section-title">کامپوننت پیشرفت</h2>
+                        <p class="section-description">
+                            نوار پیشرفت و اسپینر
+                        </p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 style="margin: 0;">نوار پیشرفت</h4>
+                        </div>
+                        <div class="card-content" style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div>
+                                <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">۲۵٪ تکمیل شده</p>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 25%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">۵۰٪ تکمیل شده</p>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 50%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">۷۵٪ تکمیل شده</p>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 75%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Avatars Section -->
+            <section id="avatars" class="section section-alt">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">آواتارها</span>
+                        <h2 class="section-title">کامپوننت آواتار</h2>
+                        <p class="section-description">
+                            تصاویر پروفایل و گروه‌ها
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 style="margin: 0;">سایزهای مختلف</h4>
+                            </div>
+                            <div class="card-content" style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                                <div class="avatar avatar-xs">ع</div>
+                                <div class="avatar avatar-sm">ع</div>
+                                <div class="avatar">ع</div>
+                                <div class="avatar avatar-lg">ع</div>
+                                <div class="avatar avatar-xl">ع</div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 style="margin: 0;">گروه آواتار</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="avatar-group">
+                                    <div class="avatar" style="background: linear-gradient(135deg, #f472b6, #c084fc); color: white;">ع</div>
+                                    <div class="avatar" style="background: linear-gradient(135deg, #60a5fa, #34d399); color: white;">م</div>
+                                    <div class="avatar" style="background: linear-gradient(135deg, #fbbf24, #f97316); color: white;">ر</div>
+                                    <div class="avatar" style="background: linear-gradient(135deg, #a78bfa, #ec4899); color: white;">س</div>
+                                    <div class="avatar" style="background: var(--primary); color: white;">+۵</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tooltips Section -->
+            <section id="tooltips" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">تولتیپ‌ها</span>
+                        <h2 class="section-title">کامپوننت تولتیپ</h2>
+                        <p class="section-description">
+                            نمایش اطلاعات اضافی هنگام هاور
+                        </p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 style="margin: 0;">نمونه تولتیپ</h4>
+                        </div>
+                        <div class="card-content" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <div class="tooltip-wrapper">
+                                <button class="btn btn-outline">هاور کنید</button>
+                                <div class="tooltip">این یک تولتیپ ساده است</div>
+                            </div>
+                            <div class="tooltip-wrapper">
+                                <button class="btn btn-outline btn-icon">
+                                    <i data-lucide="info" style="width: 18px; height: 18px;"></i>
+                                </button>
+                                <div class="tooltip">اطلاعات بیشتر</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Examples Section -->
+            <section id="examples" class="section section-alt">
+                <div class="container">
+                    <div class="section-header">
+                        <span class="section-badge">نمونه‌های عملی</span>
+                        <h2 class="section-title">نمونه‌های کامل</h2>
+                        <p class="section-description">
+                            نمونه‌های کاربردی از استفاده دایما
+                        </p>
+                    </div>
+                    
+                    <!-- Pricing Cards -->
+                    <div class="card" style="margin-bottom: 2rem;">
+                        <div class="card-header">
+                            <h4 style="margin: 0;">کارت‌های قیمت‌گذاری</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="grid grid-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 style="margin: 0;">پایه</h4>
+                                        <p class="card-description" style="margin: 0;">برای پروژه‌های کوچک</p>
+                                    </div>
+                                    <div class="card-content">
+                                        <div style="margin-bottom: 1rem;">
+                                            <span style="font-size: 2rem; font-weight: 700;">رایگان</span>
+                                        </div>
+                                        <ul style="list-style: none; font-size: 0.875rem; color: var(--muted-foreground); padding: 0; margin: 0;">
+                                            <li style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                                <i data-lucide="check-circle" style="width: 16px; height: 16px; color: var(--success);"></i>
+                                                ۵ پروژه
+                                            </li>
+                                            <li style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                                <i data-lucide="check-circle" style="width: 16px; height: 16px; color: var(--success);"></i>
+                                                ۱GB فضای ذخیره‌سازی
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button class="btn btn-outline" style="width: 100%;">انتخاب</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="card" style="border: 2px solid var(--primary); position: relative;">
+                                    <span class="badge badge-default" style="position: absolute; top: -12px; right: 50%; transform: translateX(50%);">محبوب</span>
+                                    <div class="card-header">
+                                        <h4 style="margin: 0;">حرفه‌ای</h4>
+                                        <p class="card-description" style="margin: 0;">برای تیم‌های کوچک</p>
+                                    </div>
+                                    <div class="card-content">
+                                        <div style="margin-bottom: 1rem;">
+                                            <span style="font-size: 2rem; font-weight: 700;">۴۹۰,۰۰۰</span>
+                                            <span style="color: var(--muted-foreground);"> تومان/ماه</span>
+                                        </div>
+                                        <ul style="list-style: none; font-size: 0.875rem; color: var(--muted-foreground); padding: 0; margin: 0;">
+                                            <li style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                                <i data-lucide="check-circle" style="width: 16px; height: 16px; color: var(--success);"></i>
+                                                نامحدود پروژه
+                                            </li>
+                                            <li style="display: flex; align-items: center; gap: 0.5rem;">
+                                                <i data-lucide="check-circle" style="width: 16px; height: 16px; color: var(--success);"></i>
+                                                پشتیبانی ۲۴/۷
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button class="btn btn-primary" style="width: 100%;">انتخاب</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 style="margin: 0;">سازمانی</h4>
+                                        <p class="card-description" style="margin: 0;">برای سازمان‌های بزرگ</p>
+                                    </div>
+                                    <div class="card-content">
+                                        <div style="margin-bottom: 1rem;">
+                                            <span style="font-size: 2rem; font-weight: 700;">تماس بگیرید</span>
+                                        </div>
+                                        <ul style="list-style: none; font-size: 0.875rem; color: var(--muted-foreground); padding: 0; margin: 0;">
+                                            <li style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                                <i data-lucide="check-circle" style="width: 16px; height: 16px; color: var(--success);"></i>
+                                                همه امکانات
+                                            </li>
+                                            <li style="display: flex; align-items: center; gap: 0.5rem;">
+                                                <i data-lucide="check-circle" style="width: 16px; height: 16px; color: var(--success);"></i>
+                                                پشتیبانی اختصاصی
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button class="btn btn-outline" style="width: 100%;">تماس با فروش</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="section">
+                <div class="container" style="max-width: 800px;">
+                    <div class="section-header">
+                        <span class="section-badge">سوالات متداول</span>
+                        <h2 class="section-title">سوالات رایج</h2>
+                        <p class="section-description">
+                            پاسخ به سوالات متداول درباره دایما
+                        </p>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                                دایما فریمورک چیست؟
+                                <i data-lucide="chevron-down" style="width: 18px; height: 18px;"></i>
+                            </button>
+                            <div class="accordion-content">
+                                دایما یک فریمورک CSS سبک و مدرن است که برای زبان فارسی و RTL طراحی شده. این فریمورک شامل کامپوننت‌های آماده برای ساخت رابط کاربری زیبا می‌باشد.
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                                آیا دایما رایگان است؟
+                                <i data-lucide="chevron-down" style="width: 18px; height: 18px;"></i>
+                            </button>
+                            <div class="accordion-content">
+                                بله، دایما به صورت متن‌باز و رایگان منتشر شده و شما می‌توانید آن را در پروژه‌های شخصی و تجاری استفاده کنید.
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                                چگونه Dark Mode را فعال کنم؟
+                                <i data-lucide="chevron-down" style="width: 18px; height: 18px;"></i>
+                            </button>
+                            <div class="accordion-content">
+                                کافیست کلاس dark را به عنصر html اضافه کنید: &lt;html lang="fa" dir="rtl" class="dark"&gt;
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-trigger" onclick="toggleAccordion(this)">
+                                حجم فایل دایما چقدر است؟
+                                <i data-lucide="chevron-down" style="width: 18px; height: 18px;"></i>
+                            </button>
+                            <div class="accordion-content">
+                                فایل minified دایما فقط ۱۳ کیلوبایت است که بسیار سبک و سریع بارگذاری می‌شود.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-grid">
+                        <div>
+                            <div class="logo" style="margin-bottom: 1rem;">
+                                <div class="logo-icon">
+                                    <i data-lucide="sparkles" style="width: 20px; height: 20px;"></i>
+                                </div>
+                                <span class="gradient-text">دایما فریمورک</span>
+                            </div>
+                            <p style="color: var(--muted-foreground); font-size: 0.875rem; margin-bottom: 1rem;">
+                                فریمورک مدرن CSS با پشتیبانی کامل از RTL و زبان فارسی
+                            </p>
+                            <div class="footer-social">
+                                <a href="https://github.com" target="_blank" class="icon-btn">
+                                    <i data-lucide="github" style="width: 20px; height: 20px;"></i>
+                                </a>
+                                <a href="https://twitter.com" target="_blank" class="icon-btn">
+                                    <i data-lucide="twitter" style="width: 20px; height: 20px;"></i>
+                                </a>
+                                <a href="mailto:info@dimaframework.ir" class="icon-btn">
+                                    <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-links">
+                            <h4>لینک‌های سریع</h4>
+                            <ul>
+                                <li><a href="#installation">نصب</a></li>
+                                <li><a href="#buttons">کامپوننت‌ها</a></li>
+                                <li><a href="#examples">نمونه‌ها</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-links">
+                            <h4>منابع</h4>
+                            <ul>
+                                <li><a href="https://cdn.dimaframework.ir">CDN</a></li>
+                                <li><a href="https://github.com" target="_blank">گیت‌هاب</a></li>
+                                <li><a href="mailto:info@dimaframework.ir">تماس</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <hr style="border: none; border-top: 1px solid var(--border); margin-bottom: 1.5rem;">
+                    
+                    <div class="footer-bottom">
+                        <p>© ۱۴۰۳ دایما فریمورک. تمامی حقوق محفوظ است.</p>
+                        <p>ساخته شده با ❤ برای توسعه‌دهندگان فارسی‌زبان</p>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="basicModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h4 class="modal-title">مودال ساده</h4>
+                <p class="modal-description">این یک مودال ساده است.</p>
+            </div>
+            <div class="modal-body">
+                <p>محتوای مودال در اینجا قرار می‌گیرد.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('basicModal')">انصراف</button>
+                <button class="btn btn-primary" onclick="closeModal('basicModal')">تایید</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h4 class="modal-title" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="alert-triangle" style="width: 20px; height: 20px; color: var(--destructive);"></i>
+                    حذف آیتم
+                </h4>
+                <p class="modal-description">آیا از حذف این آیتم مطمئن هستید؟</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('confirmModal')">انصراف</button>
+                <button class="btn btn-destructive" onclick="closeModal('confirmModal')">حذف</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="formModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h4 class="modal-title">فرم تماس</h4>
+                <p class="modal-description">پیام خود را بنویسید.</p>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label class="input-label">نام</label>
+                    <input type="text" class="input" placeholder="نام خود را وارد کنید">
+                </div>
+                <div class="input-group" style="margin: 0;">
+                    <label class="input-label">پیام</label>
+                    <textarea class="textarea" placeholder="پیام خود را بنویسید..." rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('formModal')">انصراف</button>
+                <button class="btn btn-primary">ارسال</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Theme Toggle
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            const icon = document.querySelector('#themeToggle i');
+            if (document.documentElement.classList.contains('dark')) {
+                icon.setAttribute('data-lucide', 'sun');
+            } else {
+                icon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        }
+
+        // Sidebar Toggle
+        function toggleSidebar(event) {
+            if (event) event.preventDefault();
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('mobileOverlay').classList.toggle('open');
+        }
+
+        // Scroll to Section
+        function scrollToSection(id, element, event) {
+            if (event) event.preventDefault();
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('open');
+            
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            if (element) element.classList.add('active');
+        }
+
+        // Dropdown Toggle
+        function toggleDropdown(id, event) {
+            if (event) event.preventDefault();
+            if (event) event.stopPropagation();
+            document.getElementById(id).classList.toggle('open');
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('open');
+                }
+            });
+        });
+
+        // Modal Functions
+        function openModal(id) {
+            document.getElementById(id).classList.add('open');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('open');
+        }
+
+        // Close modal when clicking overlay
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('open');
+                }
+            });
+        });
+
+        // Tab Switching
+        function switchTab(trigger, contentId) {
+            trigger.parentElement.querySelectorAll('.tab-trigger').forEach(t => {
+                t.classList.remove('active');
+            });
+            trigger.classList.add('active');
+            
+            trigger.closest('.tabs').querySelectorAll('.tab-content').forEach(c => {
+                c.classList.remove('active');
+            });
+            document.getElementById(contentId).classList.add('active');
+        }
+
+        // Accordion Toggle
+        function toggleAccordion(trigger) {
+            const content = trigger.nextElementSibling;
+            const isOpen = content.classList.contains('open');
+            
+            document.querySelectorAll('.accordion-content').forEach(c => {
+                c.classList.remove('open');
+            });
+            document.querySelectorAll('.accordion-trigger').forEach(t => {
+                t.classList.remove('open');
+            });
+            
+            if (!isOpen) {
+                content.classList.add('open');
+                trigger.classList.add('open');
+            }
+        }
+
+        // Copy Code
+        function copyCode(button) {
+            const code = button.closest('.code-block').querySelector('pre').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i data-lucide="check" style="width: 14px; height: 14px;"></i> کپی شد';
+                lucide.createIcons();
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    lucide.createIcons();
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

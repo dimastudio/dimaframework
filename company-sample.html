@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شرکت نوآوری فناوری | راهکارهای دیجیتال</title>
+    <meta name="description" content="ارائه دهنده راهکارهای نوین فناوری اطلاعات و دیجیتال مارکتینگ">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.dimaframework.ir/dima.min.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        :root { --primary: #2563eb; --accent: #3b82f6; }
+        .dark { --primary: #3b82f6; --accent: #60a5fa; }
+        .gradient-text { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero { background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), transparent); padding: 6rem 1rem; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.25rem; color: var(--muted-foreground); max-width: 600px; margin: 0 auto 2rem; }
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 800px; margin: 3rem auto; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 2.5rem; font-weight: 700; color: var(--primary); }
+        .stat-label { color: var(--muted-foreground); font-size: 0.875rem; }
+        .service-icon { width: 48px; height: 48px; background: rgba(37, 99, 235, 0.1); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: var(--primary); }
+        .nav-link { padding: 0.5rem 1rem; color: var(--foreground); font-size: 0.9375rem; transition: color 0.2s; }
+        .nav-link:hover { color: var(--primary); }
+        .team-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600; margin: 0 auto 1rem; }
+        .footer { background: var(--muted); padding: 3rem 1rem; margin-top: 4rem; }
+        .header { position: sticky; top: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 50; }
+        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .stats { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container" style="display: flex; align-items: center; justify-content: space-between; height: 70px;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.25rem;">
+                <div style="width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white;">
+                    <i data-lucide="building-2" style="width: 20px; height: 20px;"></i>
+                </div>
+                <span class="gradient-text">نوآوری فناوری</span>
+            </div>
+            <nav style="display: flex; align-items: center; gap: 0.5rem;">
+                <a href="#services" class="nav-link">خدمات</a>
+                <a href="#about" class="nav-link">درباره ما</a>
+                <a href="#team" class="nav-link">تیم</a>
+                <a href="#contact" class="nav-link">تماس</a>
+                <button class="btn btn-primary btn-sm">مشاوره رایگان</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <span class="badge badge-secondary" style="margin-bottom: 1rem;">🚀 بیش از ۱۰ سال تجربه</span>
+            <h1><span class="gradient-text">راهکارهای دیجیتال</span><br>برای کسب‌وکار شما</h1>
+            <p>ما با ارائه راهکارهای نوین فناوری، کسب‌وکار شما را به سطح بالاتری می‌بریم</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-lg">شروع پروژه</button>
+                <button class="btn btn-outline btn-lg">نمونه کارها</button>
+            </div>
+            <div class="stats">
+                <div class="stat-item"><div class="stat-value">۵۰۰+</div><div class="stat-label">پروژه موفق</div></div>
+                <div class="stat-item"><div class="stat-value">۱۵۰+</div><div class="stat-label">مشتری فعال</div></div>
+                <div class="stat-item"><div class="stat-value">۵۰+</div><div class="stat-label">متخصص</div></div>
+                <div class="stat-item"><div class="stat-value">۹۸%</div><div class="stat-label">رضایت مشتری</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <span class="badge badge-secondary">خدمات ما</span>
+                <h2 style="font-size: 2rem; margin-top: 0.5rem;">چه کاری انجام می‌دهیم؟</h2>
+            </div>
+            <div class="grid grid-3">
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div class="service-icon" style="margin: 0 auto 1rem;"><i data-lucide="code-2"></i></div>
+                    <h4 style="margin-bottom: 0.5rem;">توسعه نرم‌افزار</h4>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">طراحی و توسعه نرم‌افزارهای سفارشی برای کسب‌وکارها</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div class="service-icon" style="margin: 0 auto 1rem;"><i data-lucide="smartphone"></i></div>
+                    <h4 style="margin-bottom: 0.5rem;">اپلیکیشن موبایل</h4>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">توسعه اپلیکیشن iOS و Android با کیفیت بالا</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div class="service-icon" style="margin: 0 auto 1rem;"><i data-lucide="globe"></i></div>
+                    <h4 style="margin-bottom: 0.5rem;">طراحی وب‌سایت</h4>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">طراحی وب‌سایت‌های مدرن و واکنش‌گرا</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div class="service-icon" style="margin: 0 auto 1rem;"><i data-lucide="cloud"></i></div>
+                    <h4 style="margin-bottom: 0.5rem;">خدمات ابری</h4>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">پیاده‌سازی و مدیریت زیرساخت ابری</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div class="service-icon" style="margin: 0 auto 1rem;"><i data-lucide="shield-check"></i></div>
+                    <h4 style="margin-bottom: 0.5rem;">امنیت سایبری</h4>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">محافظت از سیستم‌ها و داده‌های شما</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div class="service-icon" style="margin: 0 auto 1rem;"><i data-lucide="bar-chart-3"></i></div>
+                    <h4 style="margin-bottom: 0.5rem;">تحلیل داده</h4>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">تحلیل و بصرت‌سازی داده‌های کسب‌وکار</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" style="background: var(--muted); padding: 5rem 1rem;">
+        <div class="container">
+            <div class="grid grid-2" style="gap: 4rem; align-items: center;">
+                <div>
+                    <span class="badge badge-secondary">درباره ما</span>
+                    <h2 style="font-size: 2rem; margin: 0.5rem 0 1rem;">چرا ما را انتخاب کنید؟</h2>
+                    <p style="color: var(--muted-foreground); margin-bottom: 1.5rem;">شرکت نوآوری فناوری با بیش از یک دهه تجربه در حوزه فناوری اطلاعات، راهکارهای جامع و نوین برای کسب‌وکارها ارائه می‌دهد.</p>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <i data-lucide="check-circle" style="color: var(--success);"></i>
+                            <span>تیم متخصص و باتجربه</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <i data-lucide="check-circle" style="color: var(--success);"></i>
+                            <span>پشتیبانی ۲۴ ساعته</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <i data-lucide="check-circle" style="color: var(--success);"></i>
+                            <span>قیمت رقابتی و منصفانه</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <i data-lucide="check-circle" style="color: var(--success);"></i>
+                            <span>تحویل به‌موقع پروژه‌ها</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <div style="background: linear-gradient(135deg, var(--primary), var(--accent)); height: 300px; display: flex; align-items: center; justify-content: center; color: white;">
+                        <i data-lucide="building-2" style="width: 100px; height: 100px; opacity: 0.5;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <span class="badge badge-secondary">تیم ما</span>
+                <h2 style="font-size: 2rem; margin-top: 0.5rem;">متخصصان ما</h2>
+            </div>
+            <div class="grid grid-4">
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div class="team-avatar">ع</div>
+                    <h4 style="margin-bottom: 0.25rem;">علی محمدی</h4>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">مدیرعامل</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div class="team-avatar">س</div>
+                    <h4 style="margin-bottom: 0.25rem;">سارا احمدی</h4>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">مدیر فنی</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div class="team-avatar">م</div>
+                    <h4 style="margin-bottom: 0.25rem;">محمد رضایی</h4>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">طراح ارشد</p>
+                </div>
+                <div class="card" style="text-align: center; padding: 2rem;">
+                    <div class="team-avatar">ز</div>
+                    <h4 style="margin-bottom: 0.25rem;">زهرا کریمی</h4>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem; margin: 0;">توسعه‌دهنده</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="background: var(--muted); padding: 5rem 1rem;">
+        <div class="container" style="max-width: 800px;">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <span class="badge badge-secondary">تماس با ما</span>
+                <h2 style="font-size: 2rem; margin-top: 0.5rem;">مشاوره رایگان بگیرید</h2>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <div class="grid grid-2" style="gap: 1rem;">
+                        <div class="input-group">
+                            <label class="input-label">نام و نام خانوادگی</label>
+                            <input type="text" class="input" placeholder="نام خود را وارد کنید">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">ایمیل</label>
+                            <input type="email" class="input" placeholder="email@example.com">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label class="input-label">موضوع</label>
+                        <input type="text" class="input" placeholder="موضوع پیام">
+                    </div>
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label class="input-label">پیام</label>
+                        <textarea class="textarea" rows="4" placeholder="پیام خود را بنویسید..."></textarea>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary">ارسال پیام</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid grid-4" style="margin-bottom: 2rem;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: 700; margin-bottom: 1rem;">
+                        <div style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i data-lucide="building-2" style="width: 16px; height: 16px;"></i>
+                        </div>
+                        <span>نوآوری فناوری</span>
+                    </div>
+                    <p style="color: var(--muted-foreground); font-size: 0.875rem;">ارائه دهنده راهکارهای نوین فناوری اطلاعات</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">خدمات</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--muted-foreground); font-size: 0.875rem;">توسعه نرم‌افزار</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--muted-foreground); font-size: 0.875rem;">طراحی وب</a></li>
+                        <li><a href="#" style="color: var(--muted-foreground); font-size: 0.875rem;">خدمات ابری</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">شرکت</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--muted-foreground); font-size: 0.875rem;">درباره ما</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="color: var(--muted-foreground); font-size: 0.875rem;">تیم</a></li>
+                        <li><a href="#" style="color: var(--muted-foreground); font-size: 0.875rem;">همکاری</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 1rem;">تماس</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem; color: var(--muted-foreground); font-size: 0.875rem;">۰۲۱-۱۲۳۴۵۶۷۸</li>
+                        <li style="color: var(--muted-foreground); font-size: 0.875rem;">info@novintech.ir</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid var(--border); padding-top: 1.5rem; text-align: center; color: var(--muted-foreground); font-size: 0.875rem;">
+                © ۱۴۰۳ شرکت نوآوری فناوری. تمامی حقوق محفوظ است.
+            </div>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+import * as React from 'react';
+import { cn } from '../../lib/utils';
+
+interface SliderProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  value?: number[];
+  onValueChange?: (value: number[]) => void;
+  defaultValue?: number[];
+  max?: number;
+  min?: number;
+  step?: number;
+}
+
+const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
+  ({ className, value, onValueChange, defaultValue = [0], max = 100, min = 0, step = 1, ...props }, ref) => {
+    const [currentValue, setCurrentValue] = React.useState(value?.[0] ?? defaultValue[0] ?? 0);
+    
+    React.useEffect(() => {
+      if (value?.[0] !== undefined) {
+        setCurrentValue(value[0]);
+      }
+    }, [value]);
+    
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = parseInt(e.target.value);
+      setCurrentValue(newValue);
+      onValueChange?.([newValue]);
+    };
+    
+    const percentage = ((currentValue - min) / (max - min)) * 100;
+    
+    return (
+      <div className={cn('relative flex w-full touch-none select-none items-center', className)}>
+        <div className="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">
+          <div
+            className="absolute h-full bg-primary"
+            style={{ width: `${percentage}%` }}
+          />
+        </div>
+        <input
+          type="range"
+          ref={ref}
+          value={currentValue}
+          onChange={handleChange}
+          min={min}
+          max={max}
+          step={step}
+          className="absolute w-full opacity-0 cursor-pointer h-2"
+          {...props}
+        />
+        <span
+          className="absolute h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          style={{ left: `calc(${percentage}% - 10px)` }}
+        />
+      </div>
+    );
+  }
+);
+Slider.displayName = 'Slider';
+
+export { Slider };

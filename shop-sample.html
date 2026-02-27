@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه دیجی‌کالا پلاس | بهترین قیمت، بهترین انتخاب</title>
+    <meta name="description" content="فروشگاه آنلاین با بهترین قیمت و ارسال سریع به سراسر کشور">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.dimaframework.ir/dima.min.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        :root { --primary: #ef4056; --accent: #ff6b6b; --success: #00a049; }
+        .gradient-text { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .header { position: sticky; top: 0; background: white; z-index: 50; border-bottom: 1px solid var(--border); }
+        .search-bar { flex: 1; max-width: 600px; margin: 0 1rem; }
+        .search-bar input { background: var(--muted); border: none; padding: 0.75rem 1rem 0.75rem 2.5rem; border-radius: var(--radius); width: 100%; }
+        .search-bar input:focus { outline: none; box-shadow: 0 0 0 2px var(--primary); }
+        .cart-badge { position: relative; }
+        .cart-badge::after { content: '۳'; position: absolute; top: -4px; right: -4px; background: var(--primary); color: white; font-size: 0.625rem; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .hero-banner { background: linear-gradient(135deg, #ef4056, #ff6b6b); color: white; padding: 3rem 1rem; border-radius: var(--radius); margin-bottom: 2rem; }
+        .product-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .product-img { height: 180px; background: var(--muted); display: flex; align-items: center; justify-content: center; color: var(--muted-foreground); }
+        .discount-badge { position: absolute; top: 0.5rem; right: 0.5rem; background: var(--primary); color: white; padding: 0.25rem 0.5rem; border-radius: var(--radius); font-size: 0.75rem; font-weight: 600; }
+        .old-price { text-decoration: line-through; color: var(--muted-foreground); font-size: 0.875rem; }
+        .category-pill { padding: 0.5rem 1rem; background: var(--muted); border-radius: 9999px; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.2s; cursor: pointer; }
+        .category-pill:hover { background: var(--primary); color: white; }
+        .category-pill.active { background: var(--primary); color: white; }
+        .footer { background: #1a1a2e; color: white; padding: 3rem 1rem; margin-top: 3rem; }
+        .footer a { color: rgba(255,255,255,0.7); }
+        .footer a:hover { color: white; }
+        .guarantee-item { display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--muted); border-radius: var(--radius); }
+        @media (max-width: 768px) { .search-bar { display: none; } }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container" style="display: flex; align-items: center; height: 65px; gap: 1rem;">
+            <a href="#" style="display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.25rem; color: var(--primary);">
+                <i data-lucide="shopping-bag" style="width: 28px; height: 28px;"></i>
+                دیجی‌کالا پلاس
+            </a>
+            <div class="search-bar" style="position: relative;">
+                <i data-lucide="search" style="position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--muted-foreground); width: 20px; height: 20px;"></i>
+                <input type="search" placeholder="جستجو در محصولات...">
+            </div>
+            <nav style="display: flex; align-items: center; gap: 0.5rem;">
+                <a href="#" class="btn btn-ghost btn-sm">ورود | ثبت‌نام</a>
+                <a href="#" class="icon-btn cart-badge">
+                    <i data-lucide="shopping-cart"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main style="padding: 1.5rem 1rem;">
+        <div class="container">
+            <!-- Hero Banner -->
+            <div class="hero-banner">
+                <div class="grid grid-2" style="align-items: center;">
+                    <div>
+                        <span style="background: rgba(255,255,255,0.2); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem;">فروش ویژه</span>
+                        <h1 style="font-size: 2.5rem; margin: 1rem 0;">جشنواره تخفیف‌های بهاره</h1>
+                        <p style="opacity: 0.9; margin-bottom: 1.5rem;">تا ۵۰٪ تخفیف روی هزاران محصول</p>
+                        <button class="btn" style="background: white; color: var(--primary);">مشاهده محصولات</button>
+                    </div>
+                    <div style="text-align: center;">
+                        <i data-lucide="gift" style="width: 150px; height: 150px; opacity: 0.3;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div style="margin-bottom: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <span class="category-pill active">همه</span>
+                <span class="category-pill">موبایل</span>
+                <span class="category-pill">لپ‌تاپ</span>
+                <span class="category-pill">لوازم خانگی</span>
+                <span class="category-pill">مد و پوشاک</span>
+                <span class="category-pill">آرایشی بهداشتی</span>
+            </div>
+
+            <!-- Products -->
+            <h3 style="margin-bottom: 1rem;">پرفروش‌ترین محصولات</h3>
+            <div class="grid grid-4" style="margin-bottom: 2rem;">
+                <!-- Product 1 -->
+                <div class="card product-card" style="position: relative;">
+                    <span class="discount-badge">۲۵٪</span>
+                    <div class="product-img">
+                        <i data-lucide="smartphone" style="width: 48px; height: 48px;"></i>
+                    </div>
+                    <div class="card-content">
+                        <h4 style="font-size: 0.9375rem; margin-bottom: 0.5rem;">گوشی موبایل سامسونگ Galaxy A54</h4>
+                        <div style="display: flex; gap: 0.25rem; margin-bottom: 0.5rem;">
+                            <span class="badge badge-outline" style="font-size: 0.625rem;">۲۵۶ گیگ</span>
+                            <span class="badge badge-outline" style="font-size: 0.625rem;">۸ رم</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: space-between;">
+                            <div>
+                                <span class="old-price">۱۵,۰۰۰,۰۰۰</span>
+                                <div style="font-weight: 700; color: var(--primary);">۱۱,۲۵۰,۰۰۰ تومان</div>
+                            </div>
+                            <button class="btn btn-primary btn-sm btn-icon">
+                                <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="card product-card" style="position: relative;">
+                    <span class="discount-badge">۱۵٪</span>
+                    <div class="product-img">
+                        <i data-lucide="laptop" style="width: 48px; height: 48px;"></i>
+                    </div>
+                    <div class="card-content">
+                        <h4 style="font-size: 0.9375rem; margin-bottom: 0.5rem;">لپ‌تاپ ایسوس VivoBook</h4>
+                        <div style="display: flex; gap: 0.25rem; margin-bottom: 0.5rem;">
+                            <span class="badge badge-outline" style="font-size: 0.625rem;">i5</span>
+                            <span class="badge badge-outline" style="font-size: 0.625rem;">۵۱۲ SSD</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: space-between;">
+                            <div>
+                                <span class="old-price">۳۵,۰۰۰,۰۰۰</span>
+                                <div style="font-weight: 700; color: var(--primary);">۲۹,۷۵۰,۰۰۰ تومان</div>
+                            </div>
+                            <button class="btn btn-primary btn-sm btn-icon">
+                                <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="card product-card">
+                    <div class="product-img">
+                        <i data-lucide="headphones" style="width: 48px; height: 48px;"></i>
+                    </div>
+                    <div class="card-content">
+                        <h4 style="font-size: 0.9375rem; margin-bottom: 0.5rem;">هدفون بی‌سیم سونی WH-1000XM4</h4>
+                        <div style="display: flex; gap: 0.25rem; margin-bottom: 0.5rem;">
+                            <span class="badge badge-outline" style="font-size: 0.625rem;">ANC</span>
+                            <span class="badge badge-outline" style="font-size: 0.625rem;">۳۰ ساعت</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: space-between;">
+                            <div style="font-weight: 700;">۸,۵۰۰,۰۰۰ تومان</div>
+                            <button class="btn btn-primary btn-sm btn-icon">
+                                <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="card product-card" style="position: relative;">
+                    <span class="discount-badge">۴۰٪</span>
+                    <div class="product-img">
+                        <i data-lucide="watch" style="width: 48px; height: 48px;"></i>
+                    </div>
+                    <div class="card-content">
+                        <h4 style="font-size: 0.9375rem; margin-bottom: 0.5rem;">ساعت هوشمند اپل واچ SE</h4>
+                        <div style="display: flex; gap: 0.25rem; margin-bottom: 0.5rem;">
+                            <span class="badge badge-outline" style="font-size: 0.625rem;">۴۴mm</span>
+                            <span class="badge badge-outline" style="font-size: 0.625rem;">GPS</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; justify-content: space-between;">
+                            <div>
+                                <span class="old-price">۱۲,۰۰۰,۰۰۰</span>
+                                <div style="font-weight: 700; color: var(--primary);">۷,۲۰۰,۰۰۰ تومان</div>
+                            </div>
+                            <button class="btn btn-primary btn-sm btn-icon">
+                                <i data-lucide="plus" style="width: 16px; height: 16px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Guarantees -->
+            <div class="grid grid-4" style="margin-bottom: 2rem;">
+                <div class="guarantee-item">
+                    <i data-lucide="truck" style="color: var(--success); width: 24px; height: 24px;"></i>
+                    <div>
+                        <div style="font-weight: 500; font-size: 0.875rem;">ارسال سریع</div>
+                        <div style="font-size: 0.75rem; color: var(--muted-foreground);">به سراسر کشور</div>
+                    </div>
+                </div>
+                <div class="guarantee-item">
+                    <i data-lucide="shield-check" style="color: var(--success); width: 24px; height: 24px;"></i>
+                    <div>
+                        <div style="font-weight: 500; font-size: 0.875rem;">ضمانت اصالت</div>
+                        <div style="font-size: 0.75rem; color: var(--muted-foreground);">کالای ۱۰۰٪ اصل</div>
+                    </div>
+                </div>
+                <div class="guarantee-item">
+                    <i data-lucide="refresh-cw" style="color: var(--success); width: 24px; height: 24px;"></i>
+                    <div>
+                        <div style="font-weight: 500; font-size: 0.875rem;">۷ روز ضمانت</div>
+                        <div style="font-size: 0.75rem; color: var(--muted-foreground);">بازگشت کالا</div>
+                    </div>
+                </div>
+                <div class="guarantee-item">
+                    <i data-lucide="credit-card" style="color: var(--success); width: 24px; height: 24px;"></i>
+                    <div>
+                        <div style="font-weight: 500; font-size: 0.875rem;">پرداخت امن</div>
+                        <div style="font-size: 0.75rem; color: var(--muted-foreground);">درگاه معتبر</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Products -->
+            <h3 style="margin-bottom: 1rem;">پیشنهاد شگفت‌انگیز</h3>
+            <div class="grid grid-5">
+                <div class="card product-card">
+                    <div class="product-img" style="height: 120px;">
+                        <i data-lucide="speaker" style="width: 32px; height: 32px;"></i>
+                    </div>
+                    <div class="card-content" style="padding: 0.75rem;">
+                        <h4 style="font-size: 0.8125rem; margin-bottom: 0.25rem;">اسپیکر بلوتوث JBL</h4>
+                        <div style="font-weight: 700; font-size: 0.875rem; color: var(--primary);">۲,۸۰۰,۰۰۰</div>
+                    </div>
+                </div>
+                <div class="card product-card">
+                    <div class="product-img" style="height: 120px;">
+                        <i data-lucide="camera" style="width: 32px; height: 32px;"></i>
+                    </div>
+                    <div class="card-content" style="padding: 0.75rem;">
+                        <h4 style="font-size: 0.8125rem; margin-bottom: 0.25rem;">دوربین کانن EOS</h4>
+                        <div style="font-weight: 700; font-size: 0.875rem; color: var(--primary);">۴۵,۰۰۰,۰۰۰</div>
+                    </div>
+                </div>
+                <div class="card product-card">
+                    <div class="product-img" style="height: 120px;">
+                        <i data-lucide="gamepad-2" style="width: 32px; height: 32px;"></i>
+                    </div>
+                    <div class="card-content" style="padding: 0.75rem;">
+                        <h4 style="font-size: 0.8125rem; margin-bottom: 0.25rem;">کنسول PS5</h4>
+                        <div style="font-weight: 700; font-size: 0.875rem; color: var(--primary);">۲۲,۵۰۰,۰۰۰</div>
+                    </div>
+                </div>
+                <div class="card product-card">
+                    <div class="product-img" style="height: 120px;">
+                        <i data-lucide="tablet" style="width: 32px; height: 32px;"></i>
+                    </div>
+                    <div class="card-content" style="padding: 0.75rem;">
+                        <h4 style="font-size: 0.8125rem; margin-bottom: 0.25rem;">تبلت آیپد Air</h4>
+                        <div style="font-weight: 700; font-size: 0.875rem; color: var(--primary);">۲۸,۰۰۰,۰۰۰</div>
+                    </div>
+                </div>
+                <div class="card product-card">
+                    <div class="product-img" style="height: 120px;">
+                        <i data-lucide="monitor" style="width: 32px; height: 32px;"></i>
+                    </div>
+                    <div class="card-content" style="padding: 0.75rem;">
+                        <h4 style="font-size: 0.8125rem; margin-bottom: 0.25rem;">مانیتور سامسونگ ۲۷"</h4>
+                        <div style="font-weight: 700; font-size: 0.875rem; color: var(--primary);">۸,۵۰۰,۰۰۰</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid grid-4" style="margin-bottom: 2rem;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: 700; margin-bottom: 1rem; color: white;">
+                        <i data-lucide="shopping-bag" style="width: 24px; height: 24px; color: var(--primary);"></i>
+                        دیجی‌کالا پلاس
+                    </div>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.875rem;">فروشگاه آنلاین با بهترین قیمت و ارسال سریع</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.875rem; margin-bottom: 1rem; color: white;">خدمات مشتریان</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="font-size: 0.875rem;">پیگیری سفارش</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="font-size: 0.875rem;">شرایط بازگشت</a></li>
+                        <li><a href="#" style="font-size: 0.875rem;">سوالات متداول</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.875rem; margin-bottom: 1rem; color: white;">دسترسی سریع</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="font-size: 0.875rem;">پرفروش‌ترین‌ها</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#" style="font-size: 0.875rem;">تخفیف‌ها</a></li>
+                        <li><a href="#" style="font-size: 0.875rem;">جدیدترین‌ها</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.875rem; margin-bottom: 1rem; color: white;">تماس با ما</h4>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.875rem; margin-bottom: 0.5rem;">۰۲۱-۱۲۳۴۵۶۷۸</p>
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.875rem;">support@digiplus.ir</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; text-align: center; color: rgba(255,255,255,0.5); font-size: 0.75rem;">
+                © ۱۴۰۳ تمامی حقوق محفوظ است.
+            </div>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
